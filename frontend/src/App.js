@@ -1,10 +1,20 @@
+import {Container} from 'react-bootstrap'
 import React from 'react'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Homescreen from './screens/Homescreen'
 
 const App = () => {
   return (
     <>
-      <h1>Welcome to eventbrite to find event for you!</h1>
-    
+      <Header/>
+      <main>
+        <Container>
+          <Homescreen/>
+        
+        </Container>
+      </main>
+      <Footer/>
     </>
     
   )
