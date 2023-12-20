@@ -34,7 +34,7 @@ const events = [
     location: {
       "venue": "Mukilteo Beach",
       "address": "4609 Front St",
-      "city": "OMukilteo",
+      "city": "Mukilteo",
       "state": "WA",
       "zip": "98275"
       },      
