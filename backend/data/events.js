@@ -46,7 +46,7 @@ const events = [
   {
     _id: '3',
     name: '2024 Kick-Off Party',
-    image: '/images/new year.jpg',
+    image: '/images/new_year.jpg',
     description:
       'Celebrate the New Year with us at the 2024 Kick-Off Party!',
     organizer: 'NCW Tech Alliance',
@@ -67,4 +67,4 @@ const events = [
   }
 ]
 
-module.exports = events
+export default events

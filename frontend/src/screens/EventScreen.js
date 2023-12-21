@@ -14,7 +14,13 @@ const EventScreen = () => {
     }
     fetchEvent()
   })
-  
+  const venue = event.location && event.location.venue;
+  const address = event.location && event.location.address;
+  const city = event.location && event.location.city;
+  const state = event.location && event.location.state;
+  const zip = event.location && event.location.zip;
+
+
   return (
     <>
       <Link className='btn btn-light my3' to='/'>
@@ -40,9 +46,9 @@ const EventScreen = () => {
               Duration: {event.duration}
             </ListGroup.Item>
             <ListGroup.Item>
-              Location: {event.location.venue}
+              Location: {venue}
               <br/>
-                  {event.location.address},{event.location.city}, {event.location.state}, {event.location.zip}
+                  {address},{city}, {state}, {zip}
             </ListGroup.Item>
             <ListGroup.Item>
               <Rating value={event.rating} text={`${event.numReviews} reviews`} />            

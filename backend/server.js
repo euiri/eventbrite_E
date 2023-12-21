@@ -1,5 +1,5 @@
-const express = require ('express')
-const events = require ('./data/events')
+import express from 'express'
+import events from './data/events.js'
 
 const app = express()
 app.get('/api/events',(req, res)=>{
@@ -11,4 +11,4 @@ app.get('/api/event/:id', (req,res)=>{
   res.json(event)
 })
 
-app.listen(5000, console.log ("5000 is listening."))
+app.listen(5000, console.log ("5000 is well listening."))
