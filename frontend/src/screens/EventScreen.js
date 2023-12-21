@@ -1,12 +1,20 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
 import {Row, Col, Image, Card, Button, ListGroup} from 'react-bootstrap'
 import Rating from '../components/Rating'
-import events from '../events'
 
 const EventScreen = () => {
-  const params = useParams()
-  const event = events.find(e => e._id ==params.id)
+  const params = useParams();
+  const [event, setEvent] = useState({})
+  useEffect (() => {
+    const fetchEvent = async () => {
+      const {data} = await axios.get(`/api/event/${params.id}`)
+      setEvent(data)
+    }
+    fetchEvent()
+  })
+  
   return (
     <>
       <Link className='btn btn-light my3' to='/'>

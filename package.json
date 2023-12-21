@@ -1,0 +1,22 @@
+{
+  "name": "eventbrite_e",
+  "version": "1.0.0",
+  "description": "web app to shop event",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/euiri/eventbrite_E.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/euiri/eventbrite_E/issues"
+  },
+  "homepage": "https://github.com/euiri/eventbrite_E#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
