@@ -1,6 +1,5 @@
 const events = [
   {
-    _id: '1',
     name: 'HOLIDAY Sip and paint art class at Olympia Wine bar, Rumors!',
     image: '/images/paint.jpg',
     description:
@@ -22,7 +21,6 @@ const events = [
     numReviews: 12,
   },
   {
-    _id: '2',
     name: 'Kula Cloth - Pyka Plunge 2024',
     image: '/images/dive.jpg',
     description:
@@ -44,7 +42,6 @@ const events = [
     numReviews: 8,
   },
   {
-    _id: '3',
     name: '2024 Kick-Off Party',
     image: '/images/new_year.jpg',
     description:

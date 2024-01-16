@@ -97,5 +97,5 @@ const eventSchema = mongoose.Schema({
   timestamps: true
 })
 
-const Event = mongoose.Model('events',eventSchema)
+const Event = mongoose.model('events',eventSchema)
 export default Event
