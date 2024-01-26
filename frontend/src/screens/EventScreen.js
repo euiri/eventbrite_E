@@ -1,19 +1,23 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+import React, {useEffect} from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import {Row, Col, Image, Card, Button, ListGroup} from 'react-bootstrap'
 import Rating from '../components/Rating'
+import { listEventDetails } from '../actions/eventActios'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
 
 const EventScreen = () => {
   const params = useParams();
-  const [event, setEvent] = useState({})
+  const dispatch = useDispatch();
+  
   useEffect (() => {
-    const fetchEvent = async () => {
-      const {data} = await axios.get(`/api/events/${params.id}`)
-      setEvent(data)
-    }
-    fetchEvent()
-  })
+    dispatch(listEventDetails(params.id))
+  }, [dispatch, params])
+
+  const eventDetails = useSelector((state) => state.eventDetails)
+  const {loading, event, error} = eventDetails
+
   const venue = event.location && event.location.venue;
   const address = event.location && event.location.address;
   const city = event.location && event.location.city;
@@ -26,7 +30,11 @@ const EventScreen = () => {
       <Link className='btn btn-light my3' to='/'>
         Go Back
       </Link>
-      <Row>
+      {
+        loading ? (<Loader />)
+          : error ? (<Message variant='danger'>{error}</Message>)
+          : (
+            <Row>
         <Col md={9}>
           <Image src={event.image} alt={event.name} fluid />
           <ListGroup variant='flush'>
@@ -96,6 +104,10 @@ const EventScreen = () => {
 
 
       </Row>
+
+          )
+      }
+      
     
       
       
