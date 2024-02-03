@@ -1,21 +1,17 @@
 import express from 'express'
-import asyncHandler from 'express-async-handler'
-import Event from '../models/eventModel.js' 
+import { getEvent, getEventById } from '../controllers/eventController.js'
 
 const router = express.Router()
-router.get('/', asyncHandler(async (req,res) => {
-  const products = await Event.find({})
-  res.json(products)
-}))
 
-router.get('/:id', asyncHandler(async (req,res) => {
-  const event = await Event.findById(req.params.id)
-  if (event){
-    res.json(event)
-} else {
-  res.status(404).json({message:'Event not found'})
-}
-}))
+// @desc    Fetch all events
+// @route   GET /api/events/
+// @access  public
+router.get('/', getEvent)
+
+// @desc    Fetch single eventt by id
+// @route   GET /api/events/:id
+// @access  public
+router.get('/:id', getEventById)
 
 
 export default router
