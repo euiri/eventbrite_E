@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { addToCart, removeFromCart, resetQty } from '../actions/cartAction'
+import { addToCart, removeFromCart, resetQty } from '../actions/cartActions'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 
@@ -59,7 +59,7 @@ const CartScreen = () => {
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
-                          resetQty(item.event),
+                          // resetQty(item.event),
                           addToCart(item.event, Number(e.target.value))
                           )
                       }

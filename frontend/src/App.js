@@ -7,6 +7,9 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import EventScreen from './screens/EventScreen'
 import CartScreen from './screens/CartScreen'
 import LoginScreen from './screens/LoginScreen'
+import ShippingScreen from './screens/ShippingScreen'
+import PaymentScreen from './screens/PaymentScreen'
+import PlaceOrderScreen from './screens/PlaceOrderScreen'
 
 const App = () => {
   return (
@@ -21,6 +24,9 @@ const App = () => {
               <Route path='/cart' element={<CartScreen />} />
               <Route path='/cart/:id' element={<CartScreen />} />
               <Route path="/login" element={<LoginScreen/>} />
+              <Route path='/shipping' element={<ShippingScreen/>} />
+              <Route path='/payment' element={<PaymentScreen/>} />
+              <Route path='/plcaorder' element={<PlaceOrderScreen/>} />
             </Routes>
           
           </Container>
