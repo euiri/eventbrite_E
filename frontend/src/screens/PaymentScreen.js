@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Button, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -11,9 +11,12 @@ const PaymentScreen = () => {
   const cart = useSelector((state) => state.cart)
   const { shippingAddress } = cart
 
-  if (!shippingAddress) {
-    navigate('/shipping')
-  }
+
+  useEffect(() => {
+    if (!shippingAddress || Object.keys(shippingAddress).length === 0) {
+      navigate('/shipping');
+    }
+  }, [shippingAddress, navigate])
 
   const [paymentMethod, setPaymentMethod] = useState('PayPal')
 

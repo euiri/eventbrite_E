@@ -13,6 +13,7 @@ const CartScreen = () => {
   const dispatch = useDispatch()
 
   const eventId = params.id
+  console.log(params.id)
   const qty = location.search ? Number(location.search.split('=')[1]) :1
 
   useEffect (() => {
