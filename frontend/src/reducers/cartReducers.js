@@ -18,10 +18,11 @@ export const cartReducer = (state={cartItems:[]}, action) => {
           }
         }
 
-    case CART_REMOVE_ITEM :
-      return {
-        ...state, cartItems: state.cartItems.filter(x => x.event !== action.payload)
-      }
+        case CART_REMOVE_ITEM:
+          return {
+            ...state,
+            cartItems: state.cartItems.filter(x => x.product !== action.payload)
+          }
 
     case RESET_QUANTITY:
       return {
