@@ -5,7 +5,6 @@ import generateToken from '../utils/generateToken.js'
 const authUser = asyncHandler(async (req, res) => {
    const {email, password} = req.body
    const user = await User.findOne({email})
-   console.log(user.email)
    if (user && await user.matchPassword(password)){
     return res.json({
       _id: user._id,
@@ -20,4 +19,78 @@ const authUser = asyncHandler(async (req, res) => {
    }
 })
 
-export {authUser}
+const getUserProfile = asyncHandler(async (req, res) => {
+  console.log("test0")
+  const user = await User.findById(req.user._id)
+  console.log("test1")
+  if (user) {
+    console.log("test2")
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      message: 'success'
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    if (req.body.password) {
+      user.password = req.body.password
+    }
+
+    const updatedUser = await user.save()
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+      token: generateToken(updatedUser._id),
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+const registerUser = asyncHandler (async (req, res) => {
+  const { name, email, password } = req.body
+
+  const userExists = await User.findOne({ email })
+
+  if (userExists) {
+    res.status(400)
+    throw new Error('User already exists')
+  }
+
+  const user = await User.create({
+    name,
+    email,
+    password
+  })
+
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    })
+  } else {
+    res.status(400)
+    throw new Error('Invalid user data')
+  }
+})
+
+export {authUser, getUserProfile, updateUserProfile, registerUser}
